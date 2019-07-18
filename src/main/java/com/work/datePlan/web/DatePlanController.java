@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,19 +50,25 @@ public class DatePlanController {
 	}
 	
 	@GetMapping(value = "/plan.do")
-	public String plan() throws Exception {
-
-		System.out.println("호출됨");
+	public String plan(ModelMap model) throws Exception {
+		
+		List<Map<String, Object>> dateDayList = datePlanService.selectDateDayListService();
+		
+		model.addAttribute("dateDay", dateDayList);
+		
+		System.out.println(dateDayList);
 		
 		return "datePlan/plan.tiles";
 	}
 	
 	@GetMapping(value = "planBoard.do")
-	public String planBoard() throws Exception {
+	public String planBoard(ModelMap model) throws Exception {
 		
 		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService();
 		
 		System.out.println(planBoardList);
+		
+		model.addAttribute("planBoard", planBoardList);
 		
 		return "datePlan/planBoard.tiles";
 	}

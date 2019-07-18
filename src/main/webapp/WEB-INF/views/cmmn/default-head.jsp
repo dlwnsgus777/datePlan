@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="static/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="static/css/animate.css">
     
-    <link rel="stylesheet" href="static/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+    <!-- <link rel="stylesheet" href="static/css/owl.carousel.min.css"> -->
+<!--     <link rel="stylesheet" href="static/css/owl.theme.default.min.css"> -->
     <link rel="stylesheet" href="static/css/magnific-popup.css">
 
     <link rel="stylesheet" href="static/css/aos.css">
@@ -22,5 +22,5 @@
     
     <link rel="stylesheet" href="static/css/flaticon.css">
     <link rel="stylesheet" href="static/css/icomoon.css">
-    <link rel="stylesheet" href="static/css/style.css">
+<link rel="stylesheet" href="static/css/style.css">
     

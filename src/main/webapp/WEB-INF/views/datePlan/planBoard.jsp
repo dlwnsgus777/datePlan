@@ -12,6 +12,8 @@
 }
 .pagination > li > a,
 .pagination > li > span {
+  width : 45px;
+  height : 45px;
   position: relative;
   float: left;
   padding: 6px 12px;
@@ -137,39 +139,30 @@ font-family: inherit; /* 폰트 상속 */
 		    <table class="table table-bordered table-hover">
 		      <thead>
 		        <tr>
-		          <th>컬럼1</th>
-		          <th>컬럼2</th>
-		          <th>컬럼3</th>
+		          <th>번호</th>
+		          <th>날짜</th>
+		          <th>작성자</th>
 		        </tr>
 		      </thead>
 		      <tbody>
-		        <tr>
-		          <td>컬럼1_1</td>
-		          <td>컬럼1_2</td>
-		          <td>컬럼1_3</td>
-		        </tr>
-		        <tr>
-		          <td>컬럼2_1</td>
-		          <td>컬럼2_2</td>
-		          <td>컬럼2_3</td>
-		        </tr>
-		        <tr>
-		          <td>컬럼3_1</td>
-		          <td>컬럼2_2</td>
-		          <td>컬럼2_3</td>
-		        </tr>
+		      	<c:forEach items="${planBoard }" var="planBoard">
+		      		 <tr>
+			          <td><c:out value="${planBoard.BOARD_NO}"></c:out></td>
+			          <td><c:out value="${planBoard.REG_DT}"></c:out></td>
+			          <td><c:out value="${planBoard.REG_ID}"></c:out></td>
+		        	</tr>
+		      	</c:forEach>
 		      </tbody>
 		    </table>
 		</div>
-		  <a class="btn btn-default pull-right"><span>글쓰기</span></a>
-		  <br>
+<!-- 		  <a class="btn btn-default pull-right"><span>글쓰기</span></a> -->
 		  <div class="pageWrap text-center">
 		    <ul class="pagination"> 
-		      <li><a href="#">1</a></li>
+		      <li><a href="#"><img src="static/images/common/btn_prev.png" alt="이전"></a></li>
 		      <li><a href="#">2</a></li>
 		      <li><a href="#">3</a></li>
 		      <li><a href="#">4</a></li>
-		      <li><a href="#">5</a></li>
+		      <li><a href="#"><img src="static/images/common/btn_next.png" alt="다음"></a></li>
 		    </ul>
 		  </div>
       </div>      

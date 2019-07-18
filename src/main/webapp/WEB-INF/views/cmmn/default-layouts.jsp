@@ -17,7 +17,7 @@
         </div>
       </div>
     </section>
-	<tiles:insertAttribute name="photo"/>
+<%-- 	<tiles:insertAttribute name="photo"/> --%>
 	<tiles:insertAttribute name="cmmn"/>
   </body>
 </html>

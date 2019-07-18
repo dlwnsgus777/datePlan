@@ -9,5 +9,12 @@
 		FROM 		t_date_board tb
 		WHERE		tb.DEL_YN = 'N'
 	</select>
+	
+	<select id="selectDateDayListService" parameterType="Map" resultType="Map">
+		SELECT	  td.DAYS_NO
+			     ,td.DAYS_DATE
+		FROM      t_date_days td
+
+	</select>
 
 </mapper>

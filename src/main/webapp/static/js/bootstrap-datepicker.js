@@ -821,6 +821,7 @@
 				if (d.getUTCFullYear() === year)
 					months.eq(d.getUTCMonth()).addClass('active');
 			});
+			
 
 			if (year < startYear || year > endYear){
 				months.addClass('disabled');
@@ -1599,7 +1600,7 @@
 		headTemplate: '<thead>'+
 							'<tr>'+
 								'<th class="prev">&laquo;</th>'+
-								'<th colspan="5" class="datepicker-switch"></th>'+
+								'<th colspan="5" class="datepicker-switch" ></th>'+
 								'<th class="next">&raquo;</th>'+
 							'</tr>'+
 						'</thead>',

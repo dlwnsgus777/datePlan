@@ -9,10 +9,10 @@
 	});
 </script>
     <div class="row slider-text align-items-center justify-content-center">
-            <div class="col-md-10 ftco-animate text-center">
+            <div class="col-md-10 zoomOut text-center">
               <h1 class="mb-4">I love to 
                 <strong class="typewrite" data-period="4000" data-type='[ "준혀니", "혜라니"]'>
-                  <span class="wrap"></span>
+                  <span class="wrap">asdasd</span>
                 </strong>
               </h1>
               <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p> -->

@@ -21,4 +21,10 @@ public class DatePlanServiceImpl implements DatePlanService {
 		return datePlanMapper.selectPlanBoardListService();
 	}
 
+	@Override
+	public List<Map<String, Object>> selectDateDayListService() throws Exception {
+
+		return datePlanMapper.selectDateDayListService();
+	}
+
 }

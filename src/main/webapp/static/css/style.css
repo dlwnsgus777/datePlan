@@ -7472,7 +7472,7 @@ h1, h2, h3, h4, h5,
       background-repeat: no-repeat;
       background-position: center center;
       height: calc(100vh - 117px);
-      min-height: 800px;
+      min-height: 450px;
       position: relative; }
       .owl-carousel.home-slider .slider-item .overlay {
         position: absolute;
@@ -7657,23 +7657,6 @@ h1, h2, h3, h4, h5,
       border-color: #fff;
       color: #404044; }
 
-.ftco-degree-bg {
-  position: relative; }
-  .ftco-degree-bg:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -50px;
-    overflow: visible;
-    width: 100%;
-    height: 120px;
-    z-index: 1;
-    -webkit-transform: skewY(4deg);
-    -moz-transform: skewY(4deg);
-    -ms-transform: skewY(4deg);
-    -o-transform: skewY(4deg);
-    transform: skewY(4deg);
-    background-color: #fff; }
 
 .ftco-section-featured {
   margin-top: -250px;
