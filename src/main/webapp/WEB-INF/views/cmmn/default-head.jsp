@@ -17,7 +17,6 @@
 
     <link rel="stylesheet" href="static/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="static/css/bootstrap-datepicker.css">
     <!-- <link rel="stylesheet" href="static/css/bootstrap.css"> -->
     
     <link rel="stylesheet" href="static/css/flaticon.css">

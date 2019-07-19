@@ -22,9 +22,9 @@ public class DatePlanServiceImpl implements DatePlanService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectDateDayListService() throws Exception {
+	public List<Map<String, Object>> selectDateDayListService(String dateDay) throws Exception {
 
-		return datePlanMapper.selectDateDayListService();
+		return datePlanMapper.selectDateDayListService(dateDay);
 	}
 
 }

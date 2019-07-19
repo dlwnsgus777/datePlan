@@ -10,10 +10,14 @@
 		WHERE		tb.DEL_YN = 'N'
 	</select>
 	
-	<select id="selectDateDayListService" parameterType="Map" resultType="Map">
-		SELECT	  td.DAYS_NO
-			     ,td.DAYS_DATE
-		FROM      t_date_days td
+	<select id="selectDateDayListService" parameterType="String" resultType="String">
+		SELECT	  DAYS_DATE
+		FROM      t_date_days
+		<where>
+			<if test="_parameter != null and _parameter != '' ">
+				DAYS_DATE 	LIKE CONCAT(#{_parameter}, '%')
+			</if>
+		</where>
 
 	</select>
 
