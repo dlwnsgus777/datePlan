@@ -1,6 +1,8 @@
 package com.work.datePlan.web;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -15,10 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.work.cmmn.datePlanVO;
 import com.work.datePlan.service.DatePlanService;
 
 /**
@@ -48,9 +52,9 @@ public class DatePlanController {
 	}
 	
 	@GetMapping(value = "planBoard.do")
-	public String planBoard(ModelMap model) throws Exception {
+	public String planBoard(ModelMap model, @ModelAttribute datePlanVO vo) throws Exception {
 		
-		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService();
+		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService(vo);
 		
 		System.out.println(planBoardList);
 		
@@ -66,8 +70,34 @@ public class DatePlanController {
 				
 		List<Map<String, Object>> dateDayList = datePlanService.selectDateDayListService(dateDay);
 		
-		System.out.println(dateDayList);
-
+		if (dateDayList.size() > 0) {
+			
+			String[] dayArr = new String[dateDayList.size()];
+			
+			for (int i = 0; i < dateDayList.size(); i++) {
+				
+				dayArr[i] = dateDayList.get(i).get("DAYS_DATE").toString();
+			}
+			
+			System.out.println(Arrays.toString(dayArr));
+			
+			System.out.println(dateDayList.get(0));
+			
+			for (int i = 0; i < dayArr.length; i++) {
+				int j 	= dayArr[i].indexOf("월");
+				
+				dayArr[i] = (dayArr[i].substring(j + 1)).replaceAll("[일]", "");
+				
+			}
+			
+			System.out.println(Arrays.toString(dayArr).replaceAll("\\[", "").replaceAll("\\]", ""));
+			
+			response.setCharacterEncoding("utf-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.write(Arrays.toString(dayArr).replaceAll("\\[", "").replaceAll("\\]", ""));
+		}
 	}
 	
 }

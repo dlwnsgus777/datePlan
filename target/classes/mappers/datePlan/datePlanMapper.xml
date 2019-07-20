@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.work.datePlan.service.impl.DatePlanMapper">
 
-	<select id="selectPlanBoardListService" parameterType="Map" resultType="Map">
+	<select id="selectPlanBoardListService" parameterType="datePlanVO" resultType="Map">
 		SELECT		tb.BOARD_NO
 				   ,tb.REG_DT
 				   ,tb.REG_ID
@@ -10,7 +10,7 @@
 		WHERE		tb.DEL_YN = 'N'
 	</select>
 	
-	<select id="selectDateDayListService" parameterType="String" resultType="String">
+	<select id="selectDateDayListService" parameterType="String" resultType="Map">
 		SELECT	  DAYS_DATE
 		FROM      t_date_days
 		<where>

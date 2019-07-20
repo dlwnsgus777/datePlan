@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.work.cmmn.datePlanVO;
 import com.work.datePlan.service.DatePlanService;
 
 @Service
@@ -16,9 +17,9 @@ public class DatePlanServiceImpl implements DatePlanService {
 	private DatePlanMapper datePlanMapper;
 	
 	@Override
-	public List<Map<String, Object>> selectPlanBoardListService() throws Exception {
+	public List<Map<String, Object>> selectPlanBoardListService(datePlanVO vo) throws Exception {
 		
-		return datePlanMapper.selectPlanBoardListService();
+		return datePlanMapper.selectPlanBoardListService(vo);
 	}
 
 	@Override

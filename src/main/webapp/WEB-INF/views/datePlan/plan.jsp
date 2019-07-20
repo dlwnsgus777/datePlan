@@ -80,12 +80,41 @@
 		            data     : {"dateDay" : dateDay},
 		            success : function(data) {
 		            	
+		            	var dateArr = data.split(",");
+		            	
+		            	console.log(dateArr);
+		            	
+		            	if (dateArr != "") {
+		            		DateHighLight.addHighLight(dateArr);
+		            	}
 		            }
 		     });
+		},
+		
+		addHighLight	: function(dateArr) {
+			console.log(typeof(dateArr));
+			$("#calendar td").each(function() {
+				var $td	= $(this);
+				
+				for (var i = 0; i < dateArr.length; i++) {
+					
+					if ($td.data("day") == dateArr[i]) {
+						$td.addClass("active");
+					}
+				}
+			})
 		}
 	};
 	
 	$(function(){
+		$("#calendar").on("td").click(function() {
+			alert("vbb");
+			
+			if ($(this).hasClass("active")) {
+				alert("Asd");	
+			}
+			
+		})
 		
 		Calendar.makeCalendar.call(Calendar);
 	});
@@ -105,7 +134,11 @@ td, th{
 }
 
 td:hover, th:hover {
-    background-color: rgba(173, 127, 41, 0.534);
+    background-color: #cd1d1d57;
+}
+
+.active	{
+	background-color: #ff65d7b8;
 }
  
 </style>

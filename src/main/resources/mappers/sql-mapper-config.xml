@@ -4,10 +4,9 @@
 <configuration>
 <!-- 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
+	</settings>-->
 
     <typeAliases>
-		<typeAlias alias="PagingVO" type="com.hanq.cmmn.service.PagingVO"/>
-		<typeAlias alias="hanqMap" type="com.hanq.cmmn.map.HanqMap"/>
-    </typeAliases> -->
+		<typeAlias alias="datePlanVO" type="com.work.cmmn.datePlanVO"/>
+    </typeAliases>
 </configuration>
