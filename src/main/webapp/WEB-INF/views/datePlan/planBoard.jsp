@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <style>
-	.pagination {
+.pagination {
   display: inline-block;
   padding-left: 0;
   margin: 20px 0;
@@ -119,23 +119,58 @@ font-family: inherit; /* 폰트 상속 */
  background-color : white; 
  }
 
+.selectbox, .boardWrap, .pageWrap {
+	position: relative;
+	top : 50px;
+}
 </style>
 
 <script>
-
+	$(function() {
+		$("#selectYear").change(function() {
+			var years = $(this).val();
+			
+			if (years === "연도를 선택해주세요") {
+				
+			} else {
+				alert(years);
+				
+				$.ajax({
+					url 		: "<c:url value='selectMonth.do' />",
+					dataType 	: "text",
+					data		: {"years" : years},
+					success 	: function(data) {
+						console.log(data);
+						
+						var dayArr = data.split(",");
+						
+						console.log(dayArr);
+					}
+				})
+			}
+		})
+	})
 
 </script>
 
  <div class="row slider-text align-items-center justify-content-center">
       <div class="col-md-10 text-center">
       	<div class="selectbox">
-      		<select>
-			    <option>asd</option>
-			    <option>asd</option>
+      		<select id="selectYear">
+      			<option>연도를 선택해주세요</option>
+      			<c:if test="${not empty planYears}">
+	      			<c:forEach items="${planYears}" var="planYears">
+	      				<option>${planYears.years}</option>
+	      			</c:forEach>
+	      		</c:if>
+	      		<c:if test="${empty planYears}">
+	      			<option>없음</option>
+	      		</c:if>
 			</select>
-			<select>
+			<select id="selectMonth">
 			    <option>asd</option>
-			    <option>asd</option>
+			    <option>qwe</option>
+			    <option>zxc</option>
     		</select>
       	</div>
       	
@@ -162,14 +197,17 @@ font-family: inherit; /* 폰트 상속 */
 		    </table>
 		</div>
 <!-- 		  <a class="btn btn-default pull-right"><span>글쓰기</span></a> -->
-		  <div class="pageWrap text-center">
-		    <ul class="pagination"> 
-		      <li><a href="#"><img src="static/images/common/btn_prev.png" alt="이전"></a></li>
-		      <li><a href="#">2</a></li>
-		      <li><a href="#">3</a></li>
-		      <li><a href="#">4</a></li>
-		      <li><a href="#"><img src="static/images/common/btn_next.png" alt="다음"></a></li>
-		    </ul>
-		  </div>
+		 <div class="pageWrap text-center">
+			<ul class="pagination"> 
+				<li><a href="#"><img src="static/images/common/btn_prev.png" alt="이전"></a></li>
+				
+				<c:forEach var="page" begin="${planPage.scaleStartPage}"
+					end="${planPage.scaleEndPage}" step="1">
+					<li><a href="#">${page}</a></li>
+				</c:forEach>
+				
+				<li><a href="#"><img src="static/images/common/btn_next.png" alt="다음"></a></li>
+			</ul>
+		</div>
       </div>      
 </div>

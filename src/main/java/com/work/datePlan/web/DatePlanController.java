@@ -55,10 +55,20 @@ public class DatePlanController {
 	public String planBoard(ModelMap model, @ModelAttribute datePlanVO vo) throws Exception {
 		
 		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService(vo);
+		List<Map<String, Object>> selectBoxName = datePlanService.selectPlanSelectBoxList();
+		datePlanVO 				  datePlanVO    = datePlanService.selectPlanBoardCnt(vo);
+		
+		vo.setDatePlanInfo(datePlanVO);
 		
 		System.out.println(planBoardList);
 		
-		model.addAttribute("planBoard", planBoardList);
+		System.out.println(vo.toString());
+		
+		System.out.println(selectBoxName);
+		
+		model.addAttribute("planBoard"	, planBoardList);
+		model.addAttribute("planPage"	, vo);
+		model.addAttribute("planYears"	, selectBoxName);
 		
 		return "datePlan/planBoard.tiles";
 	}
@@ -97,6 +107,20 @@ public class DatePlanController {
 			PrintWriter out = response.getWriter();
 			
 			out.write(Arrays.toString(dayArr).replaceAll("\\[", "").replaceAll("\\]", ""));
+		}
+	}
+	
+	@GetMapping(value = "selectMonth.do")
+	public void selectMonth(String years, HttpServletResponse response) throws Exception {
+		
+		List<Map<String, Object>> selectMonth = datePlanService.selectMonthList(years);
+		
+		response.setCharacterEncoding("utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		for (int i = 0; i < selectMonth.size(); i++) {
+			out.write(selectMonth.get(i).get("days").toString() + ",");
 		}
 	}
 	

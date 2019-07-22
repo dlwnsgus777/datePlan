@@ -3,11 +3,14 @@
 <mapper namespace="com.work.datePlan.service.impl.DatePlanMapper">
 
 	<select id="selectPlanBoardListService" parameterType="datePlanVO" resultType="Map">
-		SELECT		tb.BOARD_NO
-				   ,tb.REG_DT
-				   ,tb.REG_ID
-		FROM 		t_date_board tb
-		WHERE		tb.DEL_YN = 'N'
+		SELECT	   tb.BOARD_NO
+				  ,tb.REG_DT
+				  ,tb.REG_ID
+		FROM	   t_date_board tb
+				  ,(SELECT @R_NO := 0) R
+		WHERE 	   tb.DEL_YN = 'N'
+		AND		   (FLOOR(((@R_NO := @R_NO + 1) - 1) / #{rows}) + 1) = #{page}
+		ORDER BY   tb.REG_DT
 	</select>
 	
 	<select id="selectDateDayListService" parameterType="String" resultType="Map">
@@ -20,5 +23,34 @@
 		</where>
 
 	</select>
+	
+	<select id="selectPlanBoardCnt" parameterType="datePlanVO" resultType="datePlanVO">
+		SELECT	   COUNT(*)					totCnt
+				  ,CEIL(COUNT(*) / 5)	    totPage
+		FROM 	   t_date_board
+		WHERE      t_date_board.DEL_YN = 'N'
+
+	</select>
+	
+	<select id="selectPlanSelectBoxList" resultType="Map">
+		SELECT	DISTINCT LEFT(td.DAYS_DATE, 5) years
+		FROM 		t_date_days td
+	</select>
+	
+	<select id="selectMonthList" parameterType="String" resultType="Map">
+		SELECT		DISTINCT LEFT(substr(A.days, 6), A.mo) days
+		FROM
+		(
+			SELECT	INSTR(substr(td.DAYS_DATE, 6), '월') mo
+					  ,td.DAYS_DATE   days
+			FROM 		t_date_days td
+		) A
+		<where>
+			<if test="_parameter != null and _parameter != '' ">
+				A.days 	LIKE CONCAT(#{_parameter}, '%')
+			</if>
+		</where>
+	</select>
+	
 
 </mapper>
