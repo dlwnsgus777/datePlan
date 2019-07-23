@@ -1,129 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<style>
-.pagination {
-  display: inline-block;
-  padding-left: 0;
-  margin: 20px 0;
-  border-radius: 4px;
-}
-.pagination > li {
-  display: inline;
-}
-.pagination > li > a,
-.pagination > li > span {
-  width : 45px;
-  height : 45px;
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.42857143;
-  color: #337ab7;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span {
-  margin-left: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-  color: #23527c;
-  background-color: #eee;
-  border-color: #ddd;
-}
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  z-index: 2;
-  color: #fff;
-  cursor: default;
-  background-color: #337ab7;
-  border-color: #337ab7;
-}
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
-  color: #777;
-  cursor: not-allowed;
-  background-color: #fff;
-  border-color: #ddd;
-}   
-
-.btn {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}    
-
-.btn-default {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.pull-right {
-  float: right !important;
-}
-span {
-color : black;
-}
-
-table th, 
-table td{
- color : black;
-}
-select { 
-width: 200px; /* 원하는 너비설정 */ 
-padding: .8em .5em; /* 여백으로 높이 설정 */ 
-font-family: inherit; /* 폰트 상속 */
- background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
- border: 1px solid #999; 
- border-radius: 0px; /* iOS 둥근모서리 제거 */ 
- -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
- -moz-appearance: none; 
- appearance: none;
- background-color : white; 
- }
-
-.selectbox, .boardWrap, .pageWrap {
-	position: relative;
-	top : 50px;
-}
-</style>
 
 <script>
 	$(function() {
@@ -131,24 +7,31 @@ font-family: inherit; /* 폰트 상속 */
 			var years = $(this).val();
 			
 			if (years === "연도를 선택해주세요") {
-				
+				$("#selectMonth").empty().append("<option>월을 선택해주세요</option>");
 			} else {
-				alert(years);
-				
 				$.ajax({
 					url 		: "<c:url value='selectMonth.do' />",
 					dataType 	: "text",
 					data		: {"years" : years},
 					success 	: function(data) {
-						console.log(data);
+						var months 		= JSON.parse(data);
+						var optionHTML 	= "<option>월을 선택해주세요</option>";
 						
-						var dayArr = data.split(",");
+						console.log(months[0].days)
 						
-						console.log(dayArr);
+						for (var i = 0; i < months.length; i++) {
+							optionHTML += "<option>" + months[i].days + "</option>";							
+						}
+						
+						$("#selectMonth").empty().append(optionHTML);
 					}
-				})
+				});
 			}
-		})
+		});
+		
+		$("#selectMonth").change(function() {
+			alert($(this).val())
+		});
 	})
 
 </script>
@@ -168,9 +51,7 @@ font-family: inherit; /* 폰트 상속 */
 	      		</c:if>
 			</select>
 			<select id="selectMonth">
-			    <option>asd</option>
-			    <option>qwe</option>
-			    <option>zxc</option>
+				<option>월을 선택해주세요</option>
     		</select>
       	</div>
       	
@@ -187,7 +68,7 @@ font-family: inherit; /* 폰트 상속 */
 		      </thead>
 		      <tbody>
 		      	<c:forEach items="${planBoard }" var="planBoard">
-		      		 <tr>
+		      		 <tr class="boardCol">
 			          <td><c:out value="${planBoard.BOARD_NO}"></c:out></td>
 			          <td><c:out value="${planBoard.REG_DT}"></c:out></td>
 			          <td><c:out value="${planBoard.REG_ID}"></c:out></td>

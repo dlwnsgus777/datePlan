@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
 import com.work.cmmn.datePlanVO;
 import com.work.datePlan.service.DatePlanService;
 
@@ -115,13 +116,16 @@ public class DatePlanController {
 		
 		List<Map<String, Object>> selectMonth = datePlanService.selectMonthList(years);
 		
+		Gson gson 	= new Gson();
+		
+		System.out.println(selectMonth);
+		
 		response.setCharacterEncoding("utf-8");
 		
 		PrintWriter out = response.getWriter();
 		
-		for (int i = 0; i < selectMonth.size(); i++) {
-			out.write(selectMonth.get(i).get("days").toString() + ",");
-		}
+		out.write(gson.toJson(selectMonth));
+		
 	}
 	
 }

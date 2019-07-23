@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+
 <script>
 
 	var Calendar = {
@@ -119,29 +120,6 @@
 		Calendar.makeCalendar.call(Calendar);
 	});
 </script>
-
-<style type="text/css">
-td, th{
- width: 60px;
- height: 60px;
- text-align: center;
- font-size: 20px;
- font-family: 바탕;
- border:2px solid #1472d1;
- border-radius:8px;
- background-color : #f8f9fa;
- color : black;
-}
-
-td:hover, th:hover {
-    background-color: #cd1d1d57;
-}
-
-.active	{
-	background-color: #ff65d7b8;
-}
- 
-</style>
 
  <div class="row slider-text align-items-center justify-content-center">
       <div class="col-md-10 text-center">
