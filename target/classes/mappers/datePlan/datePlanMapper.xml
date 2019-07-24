@@ -9,8 +9,12 @@
 		FROM	   t_date_board tb
 				  ,(SELECT @R_NO := 0) R
 		WHERE 	   tb.DEL_YN = 'N'
+		<if test="selectKeyword != null and selectKeyword != '' ">
+			AND tb.REG_DT	LIKE CONCAT(#{selectKeyword}, '%')
+		</if>
 		AND		   (FLOOR(((@R_NO := @R_NO + 1) - 1) / #{rows}) + 1) = #{page}
 		ORDER BY   tb.REG_DT
+		
 	</select>
 	
 	<select id="selectDateDayListService" parameterType="String" resultType="Map">

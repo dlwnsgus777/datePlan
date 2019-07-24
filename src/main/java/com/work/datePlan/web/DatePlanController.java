@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,7 +75,7 @@ public class DatePlanController {
 		return "datePlan/planBoard.tiles";
 	}
 	
-	@GetMapping(value = "getDateList.do")
+	@PostMapping(value = "getDateList.do")
 	public void getDateList(String dateDay, HttpServletResponse response) throws Exception {
 		
 		System.out.println(dateDay);
@@ -111,7 +112,7 @@ public class DatePlanController {
 		}
 	}
 	
-	@GetMapping(value = "selectMonth.do")
+	@PostMapping(value = "selectMonth.do")
 	public void selectMonth(String years, HttpServletResponse response) throws Exception {
 		
 		List<Map<String, Object>> selectMonth = datePlanService.selectMonthList(years);
@@ -126,6 +127,29 @@ public class DatePlanController {
 		
 		out.write(gson.toJson(selectMonth));
 		
+	}
+	
+	@PostMapping(value = "searchPage.do")
+	public String searchPage(@ModelAttribute datePlanVO vo, ModelMap model) throws Exception {
+		datePlanVO 	datePlanVO    = datePlanService.selectPlanBoardCnt(vo);
+		
+		vo.setDatePlanInfo(datePlanVO);
+		
+		model.addAttribute("planPage", vo);
+		
+		return "datePlan/board/page";
+	}
+	
+	@PostMapping(value = "searchList.do")
+	public String searchList(@ModelAttribute datePlanVO vo, ModelMap model) throws Exception {
+		
+		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService(vo);
+		
+		System.out.println(vo.toString());
+		
+		model.addAttribute("planBoard"	, planBoardList);
+		
+		return "datePlan/board/list";
 	}
 	
 }

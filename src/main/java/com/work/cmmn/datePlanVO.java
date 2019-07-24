@@ -1,23 +1,30 @@
 package com.work.cmmn;
 
 public class datePlanVO {
-	private int page 			= 1;	// 현재 페이지
-	private int rows 			= 5;	// 한 페이지 row 수 
-	private int scale 			= 5;	
-	private int scaleStartPage	= 1;	// scale 시작 페이지
-	private int scaleEndPage	= 1;	// scale 끝 페이지
-	private int prevPage		= 0;	// 이전 페이지
-	private int nextPage		= 0;	// 다음 페이지
-	private int totPage			= 1;	// 전체 페이지
-	private int totCnt			= 0;	// 전체 게시글 갯수
-	
+	private int page 				= 1;	// 현재 페이지
+	private int rows 				= 5;	// 한 페이지 row 수 
+	private int scale 				= 5;	
+	private int scaleStartPage		= 1;	// scale 시작 페이지
+	private int scaleEndPage		= 1;	// scale 끝 페이지
+	private int prevPage			= 0;	// 이전 페이지
+	private int nextPage			= 0;	// 다음 페이지
+	private int totPage				= 1;	// 전체 페이지
+	private int totCnt				= 0;	// 전체 게시글 갯수
+	private String selectKeyword	= "";	// 셀렉트 박스에서 선택된 년,월
+			
 	@Override
 	public String toString() {
 		return "datePlanVO [page=" + page + ", rows=" + rows + ", scale=" + scale + ", scaleStartPage=" + scaleStartPage
 				+ ", scaleEndPage=" + scaleEndPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", totPage="
-				+ totPage + ", totCnt=" + totCnt + "]";
+				+ totPage + ", totCnt=" + totCnt + ", selectKeyword=" + selectKeyword + "]";
 	}
 	
+	public String getSelectKeyword() {
+		return selectKeyword;
+	}
+	public void setSelectKeyword(String selectKeyword) {
+		this.selectKeyword = selectKeyword;
+	}
 	public int getTotPage() {
 		return totPage;
 	}

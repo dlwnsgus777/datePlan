@@ -76,10 +76,11 @@
 			var dateDay = year + "년" + month + "월";
 			
 			 $.ajax({
-		            url     : "<c:url value="/getDateList.do"/>",
-		            dataType : "text",
-		            data     : {"dateDay" : dateDay},
-		            success : function(data) {
+		            url     	: "<c:url value="/getDateList.do"/>",
+		            type 		: "POST",
+		            dataType 	: "text",
+		            data     	: {"dateDay" : dateDay},
+		            success 	: function(data) {
 		            	
 		            	var dateArr = data.split(",");
 		            	

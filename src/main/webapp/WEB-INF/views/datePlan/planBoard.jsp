@@ -2,15 +2,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <script>
+	var Board = {
+		
+		search	: function(pageNum) {
+			var dataObj = {
+				page 			: pageNum,
+				selectKeyword	: field.selectKeyword
+			}
+			
+			$.ajax({
+				url	: "<c:url value= 'searchPage.do' />",
+				data : dataObj,
+				type : "POST",
+				dataType : "html",
+				success : function(data) {
+					
+					$(".pageWrap").empty().append(data);
+				}
+			})
+			
+			$.ajax({
+				url	: "<c:url value= 'searchList.do' />",
+				data : dataObj,
+				type : "POST",
+				dataType : "html",
+				success : function(data) {
+					
+					$(".boardWrap").empty().append(data);
+				}
+			})	
+		}
+	}
+	
+	var field = {
+		selectKeyword 	: ""
+	}
+	
+	function resetList() {
+		field.selectKeyword = "";
+		
+		Board.search("1");
+	}
+	
 	$(function() {
 		$("#selectYear").change(function() {
 			var years = $(this).val();
 			
 			if (years === "연도를 선택해주세요") {
 				$("#selectMonth").empty().append("<option>월을 선택해주세요</option>");
+				
+				resetList();
 			} else {
 				$.ajax({
 					url 		: "<c:url value='selectMonth.do' />",
+					type 		: "POST",
 					dataType 	: "text",
 					data		: {"years" : years},
 					success 	: function(data) {
@@ -20,7 +65,7 @@
 						console.log(months[0].days)
 						
 						for (var i = 0; i < months.length; i++) {
-							optionHTML += "<option>" + months[i].days + "</option>";							
+							optionHTML += "<option data-years=" + years + ">" + months[i].days + "</option>";							
 						}
 						
 						$("#selectMonth").empty().append(optionHTML);
@@ -30,8 +75,14 @@
 		});
 		
 		$("#selectMonth").change(function() {
-			alert($(this).val())
-		});
+			var selectKeyword = $("#selectMonth option:selected").data("years") + $("#selectMonth option:selected").text();
+			
+			field.selectKeyword = selectKeyword;
+			
+			Board.search("1");
+		});		
+		
+		Board.search("1");
 	})
 
 </script>
@@ -58,37 +109,11 @@
       	<br>
       	
       	<div class="boardWrap">
-		    <table class="table table-bordered table-hover">
-		      <thead>
-		        <tr>
-		          <th>번호</th>
-		          <th>날짜</th>
-		          <th>작성자</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		      	<c:forEach items="${planBoard }" var="planBoard">
-		      		 <tr class="boardCol">
-			          <td><c:out value="${planBoard.BOARD_NO}"></c:out></td>
-			          <td><c:out value="${planBoard.REG_DT}"></c:out></td>
-			          <td><c:out value="${planBoard.REG_ID}"></c:out></td>
-		        	</tr>
-		      	</c:forEach>
-		      </tbody>
-		    </table>
+		    
 		</div>
-<!-- 		  <a class="btn btn-default pull-right"><span>글쓰기</span></a> -->
+
 		 <div class="pageWrap text-center">
-			<ul class="pagination"> 
-				<li><a href="#"><img src="static/images/common/btn_prev.png" alt="이전"></a></li>
-				
-				<c:forEach var="page" begin="${planPage.scaleStartPage}"
-					end="${planPage.scaleEndPage}" step="1">
-					<li><a href="#">${page}</a></li>
-				</c:forEach>
-				
-				<li><a href="#"><img src="static/images/common/btn_next.png" alt="다음"></a></li>
-			</ul>
+
 		</div>
       </div>      
 </div>
