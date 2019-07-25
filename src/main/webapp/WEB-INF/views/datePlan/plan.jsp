@@ -2,10 +2,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <script>
-
+	/*
+	*	달력 관련 컨텍스트
+	*/
 	var Calendar = {
-		today : new Date(),
 			
+		// 오늘 날짜
+		today : new Date(),
+		
+		/*
+		*	달력을 만들어주는 메서드
+		*	======================
+		*	# 테이블 안에  today변수를 이용해 달력을 출력합니다.
+		*	# <td data-day="{오늘 날짜}">{오늘 날짜}</td> 의 형태 
+		*
+		*/
 		makeCalendar : function() {
 			 var fstDay         = new Date(this.today.getFullYear(), this.today.getMonth(), 1),
 		        lastDay         = new Date(this.today.getFullYear(), this.today.getMonth() + 1, 0),
@@ -54,15 +65,18 @@
 
 		    $("tbody").append(trTag);
 		    
+		    // year = 출력된 달력의 해당 년도, month = 출력된 달력의 해당 월
 		    DateHighLight.getDate(year, month);
 		},
-	
+		
+		// today변수의 값을 저번달로 바꿔줍니다.
 		prevCalendar : function() {
 			this.today = new Date(this.today.getFullYear(), this.today.getMonth() - 1, this.today.getDate());
 			
 			this.makeCalendar();
 		},
 		
+		// today변수의 값을 다음달로 바꿔줍니다.
 		nextCalendar : function() {
 			this.today = new Date(this.today.getFullYear(), this.today.getMonth() + 1, this.today.getDate());
 			
@@ -70,8 +84,22 @@
 		}
 	};
 	
+	/*
+	*	만들어진 달력에 하이라이트 처리를 하는 컨텍스트
+	*	==============================
+	*	DB에서 가져온 날짜 데이터(데이트를 했던 날짜)를 이용해
+	*	달력에 하이라이트 처리를 해줍니다.
+	*/
 	var DateHighLight = {
 		
+		/*
+		*	Calendar.makeCalendar에서 호출
+		*	전달 받은 값(year, month)로  DB에서 조회
+		*	============================
+		*	# year 	= 달력에 표시된 해당 년도
+		*	# month	= 달력에 표시된 해당 월
+		*	ex) 2019년7월의 값으로 만들어 DB에서 LIKE 검색
+		*/
 		getDate : function(year, month) {
 			var dateDay = year + "년" + month + "월";
 			
@@ -82,19 +110,31 @@
 		            data     	: {"dateDay" : dateDay},
 		            success 	: function(data) {
 		            	
+		            	// 조회로 받아온 값을 배열로 만들어 줍니다.
 		            	var dateArr = data.split(",");
 		            	
 		            	console.log(dateArr);
 		            	
+		            	// 조회 결과가 빈값일 수 있기 때문에 빈값 체크
 		            	if (dateArr != "") {
+		            		
+		            		// 달력에 하이라이트 처리
 		            		DateHighLight.addHighLight(dateArr);
 		            	}
 		            }
 		     });
 		},
 		
+		/*
+		*	달력에 하이라이트 처리하는 메서드
+		*	반복문을 돌려 dataArr의 값과 일치하는 태그를 하이라이트 처리
+		*	========================
+		*	# dataArr = DB에서 검색을 통해 가져온 배열 
+		*	ex) dataArr = [26일, 27일]
+		*
+		*/
 		addHighLight	: function(dateArr) {
-			console.log(typeof(dateArr));
+
 			$("#calendar td").each(function() {
 				var $td	= $(this);
 				
@@ -109,13 +149,14 @@
 	};
 	
 	$(function(){
+		
+		// 달력에 하이라이트 처리된 부분을 클릭하거나 빈값을 클릭했을 때 동작됨  => 미구현
 		$("#calendar").on("td").click(function() {
 			alert("vbb");
 			
 			if ($(this).hasClass("active")) {
 				alert("Asd");	
-			}
-			
+			}	
 		})
 		
 		Calendar.makeCalendar.call(Calendar);

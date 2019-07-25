@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.work.cmmn.datePlanVO;
@@ -76,7 +77,7 @@ public class DatePlanController {
 	}
 	
 	@PostMapping(value = "getDateList.do")
-	public void getDateList(String dateDay, HttpServletResponse response) throws Exception {
+	public void getDateList(@RequestParam String dateDay, HttpServletResponse response) throws Exception {
 		
 		System.out.println(dateDay);
 				
@@ -113,7 +114,7 @@ public class DatePlanController {
 	}
 	
 	@PostMapping(value = "selectMonth.do")
-	public void selectMonth(String years, HttpServletResponse response) throws Exception {
+	public void selectMonth(@RequestParam String years, HttpServletResponse response) throws Exception {
 		
 		List<Map<String, Object>> selectMonth = datePlanService.selectMonthList(years);
 		
@@ -150,6 +151,12 @@ public class DatePlanController {
 		model.addAttribute("planBoard"	, planBoardList);
 		
 		return "datePlan/board/list";
+	}
+	
+	@PostMapping(value="makeBoard.do")
+	public String makeBoard(ModelMap model, @RequestParam String selectNo) throws Exception {
+		System.out.println(selectNo);
+		return "datePlan/board/detail";
 	}
 	
 }
