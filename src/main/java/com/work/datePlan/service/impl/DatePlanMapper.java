@@ -20,4 +20,6 @@ public interface DatePlanMapper {
 
 	List<Map<String, Object>> selectMonthList(String years) throws Exception;
 
+	Map<String, Object> selectBoardDetailInfo(String selectNo) throws Exception;
+
 }

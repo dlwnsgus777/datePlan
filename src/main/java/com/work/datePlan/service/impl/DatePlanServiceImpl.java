@@ -46,4 +46,10 @@ public class DatePlanServiceImpl implements DatePlanService {
 		return datePlanMapper.selectMonthList(years);
 	}
 
+	@Override
+	public Map<String, Object> selectBoardDetailInfo(String selectNo) throws Exception {
+		
+		return datePlanMapper.selectBoardDetailInfo(selectNo);
+	}
+
 }

@@ -156,6 +156,13 @@ public class DatePlanController {
 	@PostMapping(value="makeBoard.do")
 	public String makeBoard(ModelMap model, @RequestParam String selectNo) throws Exception {
 		System.out.println(selectNo);
+		
+		Map<String, Object> selectBoard = datePlanService.selectBoardDetailInfo(selectNo);
+		
+		System.out.println(selectBoard);
+		
+		model.addAttribute("boardDetail", selectBoard); 
+		
 		return "datePlan/board/detail";
 	}
 	

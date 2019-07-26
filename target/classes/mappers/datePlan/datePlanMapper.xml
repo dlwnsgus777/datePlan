@@ -56,5 +56,19 @@
 		</where>
 	</select>
 	
+	<select id="selectBoardDetailInfo" parameterType="String" resultType="Map">
+		SELECT	   tb.BOARD_NO
+				  ,tb.REG_DT
+				  ,tb.REG_ID
+				  ,tb.BOARD_CONTENT
+		FROM	   t_date_board tb
+		WHERE 	   tb.DEL_YN = 'N'
+		<if test="_parameter != null and _parameter != '' ">
+			AND tb.BOARD_NO	 = #{_parameter}
+		</if>
+		
+	</select>
+
+	
 
 </mapper>

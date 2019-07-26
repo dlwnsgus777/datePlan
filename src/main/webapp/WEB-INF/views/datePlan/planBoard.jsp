@@ -100,6 +100,7 @@
 					"display": "none"
 				});
 			},
+			
 			clickClose : function() {
 				
 				if (event.target.id === "myModal") {
@@ -113,17 +114,19 @@
 		makeModal : function(boardNo) {
 			var selectNo = boardNo;
 			
-			alert(selectNo);
-			
 			$.ajax({
 				url 		: "<c:url value='makeBoard.do' />",
 				type 		: "POST",
-				dataType 	: "text",
+				dataType 	: "html",
 				data		: {"selectNo" : selectNo},
 				success 	: function(data) {
+					console.log(data);
 					
+					$("#modal-content").empty().append(data);
 				}
-			})
+			});
+			
+			this.modalView();
 		}
 	}
 	
@@ -133,10 +136,8 @@
 		$("#selectMonth").change(selectEvent.monthSelect);
 		
 		Board.search("1");
-			
-		$("#myBtn").click(modalEvent.modalView)
 
-		$(".close").click(modalEvent.modalClose.btnClose)
+		$("#modal-content").on(".close").click(modalEvent.modalClose.btnClose)
 
 		$("html").click(modalEvent.modalClose.clickClose)
 	      
@@ -148,7 +149,6 @@
       <div class="col-md-10 text-center">
 				
       	<div class="selectbox">
-      	<a id="myBtn">Open Modal</a>
       		<select id="selectYear">
       			<option>연도를 선택해주세요</option>
       			<c:if test="${not empty planYears}">
@@ -185,19 +185,7 @@
 		
 		  <!-- Modal content -->
 		  <div id="modal-content" class="modal-content">
-		    <span class="close">×</span>
-			<span class="reg-id">작성자</span>
-			<span class="reg-dt">날짜</span>
-
-				<div class="main-content">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sed quidem laboriosam unde ducimus aut distinctio in quos, ad exercitationem ea! Cum explicabo error, ad nihil porro voluptatem quae quo?</p>
-				</div>
+		   
 		  </div>
 		<!-- 모달 끝 -->
 		

@@ -151,12 +151,10 @@
 	$(function(){
 		
 		// 달력에 하이라이트 처리된 부분을 클릭하거나 빈값을 클릭했을 때 동작됨  => 미구현
-		$("#calendar").on("td").click(function() {
-			alert("vbb");
+		$("#calendar").click(function(event) {
+			var clickTarget = event.target;
 			
-			if ($(this).hasClass("active")) {
-				alert("Asd");	
-			}	
+			if ()
 		})
 		
 		Calendar.makeCalendar.call(Calendar);

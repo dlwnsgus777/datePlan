@@ -201,7 +201,7 @@ font-family: inherit; /* 폰트 상속 */
 	
 }
 
-.reg-id {
+.reg-dt {
 	color: black;
 	display: block;
 	border-top: 1px solid gray;
@@ -209,7 +209,7 @@ font-family: inherit; /* 폰트 상속 */
 	font-weight: 700;
 	text-align:left;
 }
-.reg-dt {
+.reg-id {
 	color: black;
 	display: block;
 	height: 100px;
