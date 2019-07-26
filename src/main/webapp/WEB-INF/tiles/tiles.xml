@@ -6,14 +6,12 @@
 <tiles-definitions>
 	<!-- 일반 타일즈 -->
 	<definition name="layouts-tiles" 	template="/WEB-INF/views/cmmn/default-layouts.jsp">
-		<put-attribute name="cmmn"    value="/WEB-INF/views/cmmn/default-cmmn.jsp" />
+		<put-attribute name="cmmn"    	value="/WEB-INF/views/cmmn/default-cmmn.jsp" />
 	  	<put-attribute name="head"    	value="/WEB-INF/views/cmmn/default-head.jsp" />
 		<put-attribute name="navbar"    value="/WEB-INF/views/cmmn/default-navbar.jsp" />
 	  	<put-attribute name="content"   value="" />
-	  	<put-attribute name="photo"    value="/WEB-INF/views/cmmn/default-photo.jsp" />
 	</definition>
 	<definition name="*/*.tiles" 		extends="layouts-tiles">
 	  	<put-attribute name="content"   value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-
 </tiles-definitions>

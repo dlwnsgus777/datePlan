@@ -18,14 +18,14 @@
 		*
 		*/
 		makeCalendar : function() {
-			 var fstDay         = new Date(this.today.getFullYear(), this.today.getMonth(), 1),
+			var fstDay          = new Date(this.today.getFullYear(), this.today.getMonth(), 1),
 		        lastDay         = new Date(this.today.getFullYear(), this.today.getMonth() + 1, 0),
 		        calendarTh      = $("#calendarYM"),
 		        calendarTable   = $("#calendar"),
 				year			= this.today.getFullYear(),
 				month			= this.today.getMonth() + 1;
 			 
-		    calendarTh.text(year + "년   " + month + "월");
+		    calendarTh.text(year + "년 " + month + "월");
 
 		    $("tbody > tr").each(function() {
 		    	
@@ -152,9 +152,23 @@
 		
 		// 달력에 하이라이트 처리된 부분을 클릭하거나 빈값을 클릭했을 때 동작됨  => 미구현
 		$("#calendar").click(function(event) {
-			var clickTarget = event.target;
+			var $clickTarget 	= $(event.target);
+			var clickDate 		= Calendar.today.getFullYear() + (Calendar.today.getMonth() + 1) + parseInt($clickTarget.text());
+			var day				= new Date();
+			var todayDate		= day.getFullYear()	 +  (day.getMonth() + 1) + day.getDate();
 			
-			if ()
+			if ($clickTarget.hasClass("active")) {
+				alert("데이트 완료");
+			}
+			
+			if (clickDate > todayDate) {
+				alert("데이트를 할 날들");
+			} else if (clickDate == todayDate) {
+				alert("데이트 하는 날!!");
+			} else if (clickDate < todayDate && !$clickTarget.hasClass("active")) {
+				alert("데이트 못한 날");
+			}
+			
 		})
 		
 		Calendar.makeCalendar.call(Calendar);

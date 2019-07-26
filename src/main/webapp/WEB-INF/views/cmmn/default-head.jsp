@@ -10,4 +10,4 @@
 	
 	<link rel="stylesheet" href="static/css/style.css">
 	<link rel="stylesheet" href="static/css/myStyle.css">
-    
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">

@@ -8,7 +8,6 @@
 		$("#plan").click(menuEvent.nameClickMenu);
 	});
 </script>
-
     <div class="row slider-text align-items-center justify-content-center">
 	    <div class="col-md-10 zoomOut text-center">
 	    	<h1 class="mb-4">I love to 
