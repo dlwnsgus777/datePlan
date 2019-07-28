@@ -19,11 +19,4 @@
 		    <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p> -->
 		    <p><a id="plan" href="javascript:;" class="btn btn-primary btn-outline-white px-4 py-3"><span class="ion-ios-play mr-2"></span>데이트할래?</a></p>
 	    </div>
-	    
-	  <div id="summernote"><p>Hello Summernote</p></div>
-	  <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-	  </script>
     </div>

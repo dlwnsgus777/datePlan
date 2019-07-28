@@ -159,6 +159,7 @@
 			
 			if ($clickTarget.hasClass("active")) {
 				alert("데이트 완료");
+				menuEvent.goMenu("writeBoard");
 			}
 			
 			if (clickDate > todayDate) {

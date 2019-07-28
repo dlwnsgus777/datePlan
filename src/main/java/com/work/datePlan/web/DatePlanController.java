@@ -76,6 +76,12 @@ public class DatePlanController {
 		return "datePlan/planBoard.tiles";
 	}
 	
+	@GetMapping(value = "/writeBoard.do")
+	public String writeBoard(ModelMap model) throws Exception {
+		
+		return "datePlan/writeBoard.tiles";
+	}
+	
 	@PostMapping(value = "getDateList.do")
 	public void getDateList(@RequestParam String dateDay, HttpServletResponse response) throws Exception {
 		
