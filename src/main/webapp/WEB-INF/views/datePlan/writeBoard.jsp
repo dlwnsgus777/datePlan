@@ -1,12 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
-<style>
-#editor {
-	color : black;
-}
+<script src="static/ckeditor/ckeditor.js"></script>
 
-</style>
 <script>
 	
 </script>
@@ -14,17 +9,16 @@
 	    <div class="col-md-10 zoomOut text-center">
 	    <br>
 		   	<div class="write">
-		        <form action="#" method="post">
-			       <textarea name="content" id="editor"></textarea>
-		        </form>
+		       <form>
+		            <textarea name="editor1" id="editor1" rows="10" cols="80">
+		                This is my textarea to be replaced with CKEditor.
+		            </textarea>
+	            <script>
+	                // Replace the <textarea id="editor1"> with a CKEditor
+	                // instance, using default configuration.
+	                CKEDITOR.replace( 'editor1' );
+	            </script>
+	        	</form>
 	        </div>
 	    </div>
-	    
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ))
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
    </div>
