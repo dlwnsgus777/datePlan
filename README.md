@@ -1,4 +1,5 @@
 # datePlan
+SpringFramwork, JQurey, Mybatis, jsp
 
 	주요 기능(구현중)
 	데이트 신청 	- 달력에서 원하는 날짜를 클릭하면 상대방에게 데이트 신청을 할 수 있습니다.
