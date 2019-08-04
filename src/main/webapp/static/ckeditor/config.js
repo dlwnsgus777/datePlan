@@ -19,7 +19,7 @@ CKEDITOR.editorConfig = function( config ) {
 
         '/',
 
-        ['Image', 'SpecialChar', 'Smiley'],
+        [ 'SpecialChar', 'Smiley'],
 
         ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
 

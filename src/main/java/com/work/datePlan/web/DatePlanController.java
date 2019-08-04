@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.work.cmmn.ImageUpload;
 import com.work.cmmn.datePlanVO;
 import com.work.datePlan.service.DatePlanService;
 
@@ -170,6 +172,28 @@ public class DatePlanController {
 		model.addAttribute("boardDetail", selectBoard); 
 		
 		return "datePlan/board/detail";
+	}
+	
+	@PostMapping(value="write.do")
+	public String writeBoard(ModelMap model, @RequestParam("file") List<MultipartFile> file,
+										   @RequestParam("editor1") String textArea) throws Exception {
+		
+		String[] fileUrl = new String[file.size()];
+		
+		for (int i = 0; i < file.size(); i++) {
+			System.out.println(file.get(i).getOriginalFilename());
+		}
+		
+		System.out.println(textArea);
+		
+		if (file.size() > 0) {
+			fileUrl = ImageUpload.uploadFile(file);
+		}
+		
+		System.out.println(Arrays.toString(fileUrl));
+		
+		// 리턴화면으로 작성완료 화면 보내주기 (지금은 임시방편)
+		return "datePlan/home.tiles";
 	}
 	
 }

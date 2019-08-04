@@ -10,12 +10,12 @@
 	    <div class="col-md-10 zoomOut text-center">
 	    <br>
 		   	<div class="write">
-		       <form>
+		       <form action="write.do" enctype="multipart/form-data" method="post" id="writeBoard">
 		            <textarea name="editor1" id="editor1" rows="10" cols="80">
 		                This is my textarea to be replaced with CKEditor.
 		            </textarea>
-		            <button>사진첨부</button>
-		            <input type="submit" value="작성완료">
+		            <input type="file" name="file" multiple="multiple">
+		            <input type="submit" id="submitBtn" value="작성완료">
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor
 	                // instance, using default configuration.
