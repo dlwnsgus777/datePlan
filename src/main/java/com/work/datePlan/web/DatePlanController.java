@@ -50,12 +50,14 @@ public class DatePlanController {
 		return "datePlan/home.tiles";
 	}
 	
+	// 달력표시 페이지
 	@GetMapping(value = "/plan.do")
 	public String plan(ModelMap model) throws Exception {
 		
 		return "datePlan/plan.tiles";
 	}
 	
+	// 게시글 목록 페이지
 	@GetMapping(value = "planBoard.do")
 	public String planBoard(ModelMap model, @ModelAttribute datePlanVO vo) throws Exception {
 		
@@ -78,12 +80,14 @@ public class DatePlanController {
 		return "datePlan/planBoard.tiles";
 	}
 	
+	// 게시글 작성 페이지
 	@GetMapping(value = "/writeBoard.do")
 	public String writeBoard(ModelMap model) throws Exception {
 		
 		return "datePlan/writeBoard.tiles";
 	}
 	
+	// 달력에 하이라이트 처리를 위한 메서드
 	@PostMapping(value = "getDateList.do")
 	public void getDateList(@RequestParam String dateDay, HttpServletResponse response) throws Exception {
 		
@@ -121,6 +125,7 @@ public class DatePlanController {
 		}
 	}
 	
+	// 게시글 목록의 셀렉트 박스 관련 
 	@PostMapping(value = "selectMonth.do")
 	public void selectMonth(@RequestParam String years, HttpServletResponse response) throws Exception {
 		
@@ -138,6 +143,7 @@ public class DatePlanController {
 		
 	}
 	
+	// 게시글 목록 페이징 처리
 	@PostMapping(value = "searchPage.do")
 	public String searchPage(@ModelAttribute datePlanVO vo, ModelMap model) throws Exception {
 		datePlanVO 	datePlanVO    = datePlanService.selectPlanBoardCnt(vo);
@@ -149,6 +155,7 @@ public class DatePlanController {
 		return "datePlan/board/page";
 	}
 	
+	// 게시글 목록 조회
 	@PostMapping(value = "searchList.do")
 	public String searchList(@ModelAttribute datePlanVO vo, ModelMap model) throws Exception {
 		
@@ -161,6 +168,7 @@ public class DatePlanController {
 		return "datePlan/board/list";
 	}
 	
+	// 게시글 상세조회
 	@PostMapping(value="makeBoard.do")
 	public String makeBoard(ModelMap model, @RequestParam String selectNo) throws Exception {
 		System.out.println(selectNo);
@@ -174,6 +182,7 @@ public class DatePlanController {
 		return "datePlan/board/detail";
 	}
 	
+	// 게시글 작성
 	@PostMapping(value="write.do")
 	public String writeBoard(ModelMap model, @RequestParam("file") List<MultipartFile> file,
 										   @RequestParam("editor1") String textArea) throws Exception {
@@ -192,8 +201,7 @@ public class DatePlanController {
 		
 		System.out.println(Arrays.toString(fileUrl));
 		
-		// 리턴화면으로 작성완료 화면 보내주기 (지금은 임시방편)
-		return "datePlan/home.tiles";
+		return "datePlan/successBoard.tiles";
 	}
 	
 }
