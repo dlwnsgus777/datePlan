@@ -7,6 +7,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -182,9 +184,12 @@ public class DatePlanController {
 	// 게시글 작성
 	@PostMapping(value="write.do")
 	public String writeBoard(ModelMap model, @RequestParam("file") List<MultipartFile> file,
-										   @RequestParam("editor1") String textArea) throws Exception {
+										   @RequestParam("editor1") String textArea,HttpServletRequest req) throws Exception {
 		
 		String[] fileUrl = new String[file.size()];
+		String path = req.getSession().getServletContext().getRealPath("/static/images/upload/");
+		
+		System.out.println(path);
 		
 		for (int i = 0; i < file.size(); i++) {
 			System.out.println(file.get(i).getOriginalFilename());
@@ -192,9 +197,11 @@ public class DatePlanController {
 		
 		System.out.println(textArea);
 		
-		if (file.size() > 0) {
-			fileUrl = ImageUpload.uploadFile(file);
+		
+		if (file.size() > 0) { 
+			fileUrl = ImageUpload.uploadFile(file, path); 
 		}
+		 
 		
 		System.out.println(Arrays.toString(fileUrl));
 		
