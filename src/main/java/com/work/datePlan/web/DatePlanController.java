@@ -62,7 +62,7 @@ public class DatePlanController {
 		
 		List<Map<String, Object>> planBoardList = datePlanService.selectPlanBoardListService(vo);
 		List<Map<String, Object>> selectBoxName = datePlanService.selectPlanSelectBoxList();
-		datePlanVO 				  datePlanVO    = datePlanService.selectPlanBoardCnt(vo);
+		datePlanVO 		  datePlanVO    = datePlanService.selectPlanBoardCnt(vo);
 		
 		vo.setDatePlanInfo(datePlanVO);
 		
