@@ -26,11 +26,11 @@ public class ImageUpload {
 			String saveName = uuid.toString() + "_" + 
 							  file.get(i).getOriginalFilename();
 			
-			//File 	target 	= new File(savePath, saveName);
+			//File 	target 	= new File(path, saveName);
 			FileOutputStream fos = new FileOutputStream(path + "/" + saveName);
 			fos.write(file.get(i).getBytes());			
 			fos.close();
-			
+			//FileCopyUtils.copy(file.get(i).getBytes(), target);
 			fileUrl[i] = saveName;
 		}
 		

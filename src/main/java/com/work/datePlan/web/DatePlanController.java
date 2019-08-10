@@ -187,10 +187,11 @@ public class DatePlanController {
 										   @RequestParam("editor1") String textArea,HttpServletRequest req) throws Exception {
 		
 		String[] fileUrl = new String[file.size()];
-		String path = req.getSession().getServletContext().getRealPath("/static/images/upload/");
+		String   path    = req.getSession().getServletContext().getRealPath("/static/images/upload");
 		
 		System.out.println(path);
 		
+		//System.out.println(req.getSession().getServletContext().getRealPath("upload"));
 		for (int i = 0; i < file.size(); i++) {
 			System.out.println(file.get(i).getOriginalFilename());
 		}
