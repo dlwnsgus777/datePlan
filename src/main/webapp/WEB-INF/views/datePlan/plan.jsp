@@ -148,6 +148,12 @@
 		}
 	};
 	
+	function setCookie(value) {
+		var date = new Date();
+		date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
+		document.cookie = "date=" + value + ";expires=" + date.toUTCString() + ";path=/";
+	}
+	
 	$(function(){
 		
 		// 달력에 하이라이트 처리된 부분을 클릭하거나 빈값을 클릭했을 때 동작됨  => 미구현
@@ -156,10 +162,11 @@
 			var clickDate 		= Calendar.today.getFullYear() + (Calendar.today.getMonth() + 1) + parseInt($clickTarget.text());
 			var day				= new Date();
 			var todayDate		= day.getFullYear()	 +  (day.getMonth() + 1) + day.getDate();
+			var clickDateStr    = $("#calendarYM").text() + $clickTarget.text() + "일";
 			
 			if ($clickTarget.hasClass("active")) {
-				alert("데이트 완료");
-				menuEvent.goMenu("writeBoard");
+				setCookie(clickDateStr);
+				location.href = "writeBoard.do";
 			}
 			
 			if (clickDate > todayDate) {

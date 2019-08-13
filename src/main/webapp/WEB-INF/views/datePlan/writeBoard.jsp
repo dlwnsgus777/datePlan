@@ -4,7 +4,15 @@
 
 
 <script>
-	
+	function getCookie() {
+		var cookie = document.cookie;
+		cookie = cookie.replace("date=", "");
+		console.log(cookie);
+		return cookie;
+	}
+	$(function() {
+		$("#dateStr").val(getCookie());
+	})
 </script>
     <div class="row slider-text align-items-center justify-content-center">
 	    <div class="col-md-10 zoomOut text-center">
@@ -15,6 +23,7 @@
 		                This is my textarea to be replaced with CKEditor.
 		            </textarea>
 		            <input type="file" name="file" multiple="multiple">
+		            <input type="hidden" name="dateStr" id="dateStr">
 		            <input type="submit" id="submitBtn" value="작성완료">
 	            <script>
 	                // Replace the <textarea id="editor1"> with a CKEditor

@@ -184,12 +184,13 @@ public class DatePlanController {
 	// 게시글 작성
 	@PostMapping(value="write.do")
 	public String writeBoard(ModelMap model, @RequestParam("file") List<MultipartFile> file,
-										   @RequestParam("editor1") String textArea,HttpServletRequest req) throws Exception {
+										     @RequestParam("editor1") String textArea,
+										     @RequestParam("dateStr") String dateStr,
+										     HttpServletRequest req) throws Exception {
 		
 		String[] fileUrl = new String[file.size()];
-		String   path    = req.getSession().getServletContext().getRealPath("/static/images/upload");
-		
-		System.out.println(path);
+		String path = "C:\\sts-bundle\\workspace\\datePlan\\src\\main\\webapp\\static\\images\\upload";
+		System.out.println(dateStr);
 		
 		//System.out.println(req.getSession().getServletContext().getRealPath("upload"));
 		for (int i = 0; i < file.size(); i++) {
